@@ -9,6 +9,9 @@ import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Settings from "./Screen/Settings";
 import Home from "./Screen/Home";
 import Users from "./Screen/Users";
+import AnotherDatailsHome from "./Screen/AnotherDatailsHome";
+import DetailHome from "./Screen/DetailHome";
+import { createStackNavigator } from "@react-navigation/stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,9 +23,9 @@ function MyTabs(){
                 tabBarActiveTintColor: 'blue',
             }}
         >
-            <Tab.Screen name='Home' component={Home} 
+            <Tab.Screen name='HomeScreen' component={StackDetailHome} 
                 options={{
-                    tabBarLabel:'Home',
+                    tabBarLabel:'HomeScreen',
                     tabBarIcon: ({color, size})=> (
                         <FontAwesome name="home" size={24} color="black" />
                     )
@@ -47,6 +50,28 @@ function MyTabs(){
         </Tab.Navigator>
     )
 };
+
+const DetailsHomeNavigator = createStackNavigator();
+
+function StackDetailHome(){
+    return (
+        <DetailsHomeNavigator.Navigator
+            initialRouteName='Home'>
+                <DetailsHomeNavigator.Screen
+                    name="Home"
+                    component={Home}>
+                </DetailsHomeNavigator.Screen>
+                <DetailsHomeNavigator.Screen
+                    name="DetailHome"
+                    component={DetailHome}>
+                </DetailsHomeNavigator.Screen>
+                <DetailsHomeNavigator.Screen
+                    name="AnotherDatailsHome"
+                    component={AnotherDatailsHome}
+                />
+            </DetailsHomeNavigator.Navigator>
+    )
+}
 
 export default function Navegacion() {
     return (
